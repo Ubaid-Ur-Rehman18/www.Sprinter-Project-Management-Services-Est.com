@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us | Sprinter PMS</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Body and Layout Fix */
+        html, body {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body {
+            background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80') 
+                        no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: -1;
+        }
+
+        header {
+            background-color: #000;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0.5rem 2rem;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+        }
+
+        .header-wrapper {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .menu-icon {
+            display: none;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            z-index: 1002;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background-color: #ffcc00;
+            color: #004aad;
+        }
+
+        main {
+            flex: 1; /* pushes footer down */
+        }
+
+        .page-content {
+            max-width: 900px;
+            margin: 4rem auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            line-height: 1.6;
+        }
+
+        .page-content h1 {
+            font-size: 2.8rem;
+            color: #ffcc00;
+            margin-bottom: 0.5rem;
+            border-bottom: 3px solid #004aad;
+            padding-bottom: 0.5rem;
+        }
+
+        .page-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        footer {
+            background-color: #111;
+            color: #ddd;
+            text-align: center;
+            padding: 1.5rem 2rem;
+            font-size: 0.9rem;
+            width: 100%;
+            margin-top: auto; /* Ensures footer stays bottom */
+        }
+
+        footer p a {
+            color: #ffcc00;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        footer p a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .menu-icon { display: block; }
+
+            nav {
+                display: none;
+                flex-direction: column;
+                background-color: #000;
+                position: absolute;
+                top: 70px; right: 0;
+                width: 100%;
+                z-index: 1001;
+                text-align: center;
+                border-top: 1px solid #333;
+            }
+            nav.active { display: flex; }
+            nav a { display: block; padding: 1rem 2rem; border-bottom: 1px solid #333; }
+
+            .page-content {
+                margin: 2rem 1rem;
+                padding: 1.5rem;
+            }
+
+            .page-content h1 { font-size: 2rem; }
+            .page-content p { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-wrapper">
+        <a href="index.html">
+            <img src="images/logo.png.png" alt="Sprinter Logo" class="logo">
+        </a>
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+        <nav id="navbar">
+            <a href="index.html">Home</a>
+            <a href="about.html" class="active">About</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+            <a href="project.html">Project</a>
+        </nav>
+    </div>
+</header>
+
+<main class="page-content" data-aos="fade-up">
+    <h1>About Sprinter PMS</h1>
+    <p>
+        Sprinter Project Management Services is a Dubai-based company known for its unwavering commitment to quality, innovation, and reliability. We provide professional solutions across multiple critical sectors, including industrial systems, equipment maintenance, and bespoke interior design.
+    </p>
+    <p>
+        Since our inception, we've built a strong reputation by delivering projects that consistently meet the highest standards of safety, efficiency, and performance. Our dedicated team brings together deep technical expertise and creative vision—whether it’s managing complex industrial operations or designing modern, highly functional commercial and residential spaces.
+    </p>
+    <p>
+        At Sprinter PMS, we believe every project deserves **precision, passion, and perfection**—these are the core values that define who we are and how we work for our clients across the UAE.
+    </p>
+</main>
+
+<footer>
+    <p>
+        &copy; 2025 Sprinter PMS. All rights reserved. 
+        | Designed & Developed by <a href="[YOUR AGENCY URL HERE]" target="_blank">Smart Stack Studio</a>
+    </p>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+
+    function toggleMenu() {
+        const navbar = document.getElementById("navbar");
+        navbar.classList.toggle("active");
+    }
+
+    document.querySelectorAll("#navbar a").forEach(link => {
+        link.addEventListener("click", () => {
+            const navbar = document.getElementById("navbar");
+            if (navbar.classList.contains("active")) navbar.classList.remove("active");
+        });
+    });
+</script>
+</body>
+</html>

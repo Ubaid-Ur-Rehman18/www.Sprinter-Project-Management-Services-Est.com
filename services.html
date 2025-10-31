@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Services | Sprinter PMS</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" /> 
+
+    <style>
+        /* BASE STYLES */
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            /* --- ORIGINAL BACKGROUND RESTORED HERE --- */
+            background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80') no-repeat center center fixed; 
+            background-size: cover; color: white; position: relative;
+            min-height: 100vh; 
+            padding-bottom: 70px; 
+        }
+        body::before {
+            content: ""; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0,0,0,0.75); 
+            z-index: -1;
+        }
+        
+        /* --- HEADER STYLES --- */
+        header {
+            background-color: #000; position: sticky; top: 0; z-index: 1000; padding: 0.5rem 2rem;
+            display: flex; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+        }
+        .header-wrapper {
+            width: 100%; max-width: 1100px; display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo-group {
+            display: flex; align-items: center; gap: 15px; 
+        }
+        .logo { height: 60px; width: auto; object-fit: contain; display: block; }
+
+        /* Header Contact Numbers (Ooper-Neeche) */
+        .header-contact-numbers {
+            display: flex; flex-direction: column; gap: 2px; font-size: 0.85rem; line-height: 1.1;
+        }
+        .header-contact-numbers a {
+            color: #fff; text-decoration: none; transition: color 0.3s; font-weight: 500;
+        }
+        .header-contact-numbers a:hover { color: #ffcc00; }
+
+        .menu-icon { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
+        nav { display: flex; gap: 1rem; align-items: center; }
+        nav a { color: white; text-decoration: none; font-weight: 600; padding: 0.5rem 0.75rem; border-radius: 6px; transition: background 0.3s; }
+        nav a:hover, nav a.active { background-color: #ffcc00; color: #004aad; }
+
+        /* --- CONTENT STYLES --- */
+        .content-container {
+            max-width: 900px; margin: 4rem auto 4rem auto; 
+            background-color: rgba(0,0,0,0.7); 
+            padding: 3rem; border-radius: 15px; box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+        }
+        .content-container h1 {
+            font-size: 2.5rem; color: #ffcc00; margin-bottom: 2rem; 
+            border-bottom: 3px solid #004aad; 
+            padding-bottom: 0.5rem; text-align: center;
+        }
+        .services-list {
+            list-style: none; margin-top: 2rem; padding-left: 0;
+        }
+        .services-list li {
+            font-size: 1.1rem; 
+            margin-bottom: 1.5rem; 
+            padding: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.05); 
+            border-radius: 8px;
+            border-left: 4px solid #ffcc00; 
+            line-height: 1.4;
+            transition: background-color 0.3s;
+        }
+        .services-list li:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .services-list li::before {
+            content: "✦"; 
+            position: absolute; left: 10px; top: 1rem;
+            color: #ffcc00;
+            font-size: 1.2rem;
+        }
+        .services-list strong {
+            color: #ffcc00; 
+        }
+        
+        /* --- FOOTER STYLES (Finalized) --- */
+        footer {
+            background-color: #111; color: #ddd; text-align: center;
+            padding: 1.5rem 2rem; font-size: 0.9rem; width: 100%;
+            position: fixed; bottom: 0; 
+        }
+        footer p a { 
+            color: #ffcc00; text-decoration: none; font-weight: 600; transition: color 0.3s; 
+        }
+        footer p a:hover { color: #fff; }
+
+        
+        /* MOBILE RESPONSIVENESS */
+        @media (max-width: 768px) {
+            .menu-icon { display: block; }
+            .logo-group { gap: 10px; }
+            .header-contact-numbers { display: none; }
+            nav { display: none; flex-direction: column; background-color: #000; position: absolute; top: 70px; right: 0; width: 100%; padding: 1rem 0; z-index: 1001; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.5); border-top: 1px solid #333; }
+            nav.active { display: flex; }
+            nav a { padding: 1rem 2rem; border-top: 1px solid #333; }
+            
+            .content-container { padding: 1.5rem; margin: 5rem 1rem 100px 1rem; }
+            .content-container h1 { font-size: 2rem; }
+            .services-list li { font-size: 1rem; padding: 0.8rem; padding-left: 1.8rem; margin-bottom: 1rem; }
+            .services-list li::before { top: 0.8rem; }
+            
+            .whatsapp-button { bottom: 80px; right: 10px; }
+            footer { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-wrapper">
+        <div class="logo-group">
+            <a href="index.html">
+                <img src="images/logo.png.png" alt="Sprinter Logo" class="logo">
+            </a>
+        </div>
+        
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div> 
+        
+        <nav id="navbar">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html" class="active">Services</a>
+            <a href="contact.html">Contact</a>
+            <a href="project.html">Project</a>
+        </nav>
+    </div>
+</header>
+
+<div class="content-container" data-aos="fade-up">
+    <h1>Our  Services</h1>
+    <ul class="services-list">
+        <li>
+            <strong>🧊 Cold Storage Room Solutions:</strong> Design, manufacturing, and installation of high-performance cold storage rooms for food, pharma, and industrial use, ensuring optimal temperature control and energy efficiency.
+        </li>
+        <li>
+            <strong>🛒 Market Cabinets:</strong> Supply and installation of advanced refrigeration display cabinets for supermarkets and retail outlets — combining performance, hygiene, and modern design.
+        </li>
+        <li>
+            <strong>🖨️ Rotogravure Printing Machine (5–10 Colors):</strong> Installation, repair, and maintenance of high-speed electronic shaft Rotogravure printing machines for flexible packaging and labeling industries.
+        </li>
+        <li>
+            <strong>🛗 Elevator Systems:</strong> Expert elevator installation, modernization, and 24/7 maintenance services for residential, commercial, and industrial buildings — with safety compliance and sleek control systems.
+        </li>
+        <li>
+            <strong>💧 Industrial Water Purification Plants:</strong> End-to-end solutions for water filtration, softening, and purification systems for factories, commercial kitchens, and industrial facilities.
+        </li>
+        <li>
+            <strong>🛠️ Repair & Maintenance:</strong> Comprehensive after-sales support with rapid response for breakdowns, preventive maintenance schedules, and equipment upgrades across all categories.
+        </li>
+        
+        <li>
+            <strong>🎨 Interior Design & Fit-Out Solutions:</strong> Creative and functional interior design services for residential, commercial, and corporate spaces — including planning, fit-out, and finishing. We transform spaces with modern aesthetics, efficient layouts, and high-quality materials.
+        </li>
+    </ul>
+</div>
+
+
+
+<footer>
+    <p>
+        &copy; 2025 Sprinter PMS. All rights reserved. 
+        | Designed & Developed by <a href="[APNI AGENCY KA URL YAHAN DAALEIN]" target="_blank" style="color:#ffcc00; text-decoration:none; font-weight:600;">Smart Stack Studio</a>
+    </p>
+</footer>
+    
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+
+    function toggleMenu() {
+        const nav = document.getElementById('navbar');
+        nav.classList.toggle('active');
+    }
+
+    document.querySelectorAll('#navbar a').forEach(link => {
+        link.addEventListener('click', () => {
+            const nav = document.getElementById('navbar');
+            if (nav.classList.contains('active')) {
+                nav.classList.remove('active');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

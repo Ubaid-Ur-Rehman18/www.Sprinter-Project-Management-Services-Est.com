@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Projects | Sprinter PMS</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* subtle overlay animation */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(2px);
+      animation: fadeBg 10s ease-in-out infinite alternate;
+      z-index: -1;
+    }
+
+    @keyframes fadeBg {
+      0% { background-color: rgba(0,0,0,0.6); }
+      100% { background-color: rgba(0,0,0,0.8); }
+    }
+
+    header {
+      background-color: #000;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 0.5rem 2rem;
+      display: flex;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    }
+
+    .header-wrapper {
+      width: 100%;
+      max-width: 1100px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      height: 60px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .menu-icon {
+      display: none;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+
+    nav a:hover, nav a.active {
+      background-color: #ffcc00;
+      color: #004aad;
+    }
+
+    main {
+      flex: 1;
+      max-width: 1100px;
+      margin: 4rem auto;
+      padding: 0 1rem;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #ffcc00;
+      margin-bottom: 3rem;
+      border-bottom: 3px solid #004aad;
+      display: inline-block;
+      padding-bottom: 0.5rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .project-info {
+      padding: 1rem;
+    }
+
+    .project-info h3 {
+      color: #ffcc00;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-info p {
+      font-size: 0.95rem;
+      color: #ddd;
+    }
+
+    footer {
+      background-color: #111;
+      color: #ddd;
+      text-align: center;
+      padding: 1.5rem 2rem;
+      font-size: 0.9rem;
+      width: 100%;
+      margin-top: auto;
+    }
+
+    footer a {
+      color: #ffcc00;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    /* Modal Styling */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(6px);
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .modal-content {
+  background: rgba(20, 20, 20, 0.95);
+  border-radius: 12px;
+  max-width: 800px;
+  width: 100%;
+  padding: 2rem;
+  color: white;
+  text-align: center;
+  position: relative;
+  animation: fadeIn 0.4s ease;
+  overflow-y: auto;
+  max-height: 90vh;
+}
+    .modal-content h2 {
+      color: #ffcc00;
+      margin-bottom: 1rem;
+    }
+
+    .modal-content p {
+      color: #ccc;
+      margin-bottom: 1.5rem;
+    }
+
+   .modal-content img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
+      color: #fff;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .close-btn:hover {
+      color: #ffcc00;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @media (max-width: 768px) {
+      .menu-icon { display: block; }
+      nav { display: none; flex-direction: column; background-color: #000; position: absolute; top: 70px; right: 0; width: 100%; text-align: center; }
+      nav.active { display: block; }
+      nav a { display: block; padding: 1rem; border-bottom: 1px solid #333; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-wrapper">
+      <a href="index.html"><img src="images/logo.png.png" alt="Sprinter Logo" class="logo"></a>
+      <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+      <nav id="navbar">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+         <a href="project.html" class="active">Projects</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1>Our Projects</h1>
+
+    <div class="projects-grid">
+      <div class="project-card">
+        <img src="images/cold.jpg" alt="Cold Storage Room">
+
+        <div class="project-info">
+          <h3>Cold Storage Room</h3>
+          <p>Design, manufacturing, and installation of cold storage solutions with optimal performance and efficiency.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="images/Elevators.jpg" alt="Elevator Systems">
+
+        <div class="project-info">
+          <h3>Elevator Systems</h3>
+          <p>High-quality elevator installations and modernizations for commercial and industrial buildings.</p>
+        </div>
+      </div>
+
+      <div class="project-card" id="interiorProject">
+       <img src="images/interior.jpg" alt="Interior Design">
+
+        <div class="project-info">
+          <h3>Interior Design</h3>
+          <p>Modern, luxury interior design for homes, offices, and commercial spaces across the UAE.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+       <img src="images/water.jpg" alt="Industrial Water Purification">
+
+        <div class="project-info">
+          <h3>Industrial Water Purification</h3>
+          <p>Advanced filtration and purification solutions for factories and industrial applications.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Sprinter PMS. All rights reserved. | Designed & Developed by 
+      <a href="#">Smart Stack Studio</a></p>
+  </footer>
+
+  <!-- Interior Design Modal -->
+  <div class="modal" id="interiorModal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h2>Interior Design Projects</h2>
+      <p>At Sprinter PMS, we create elegant and modern interior spaces that reflect style, comfort, and functionality — perfectly suited for homes and businesses across the UAE.</p>
+      <img src="images/kichen.jpg" alt="kitchen">
+      <img src="images/room.jpg" alt="room">
+      <img src="images/Cafe.jpg" alt="cafe">
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    function toggleMenu() {
+      document.getElementById("navbar").classList.toggle("active");
+    }
+
+    // Modal Logic
+    const interiorCard = document.getElementById("interiorProject");
+    const modal = document.getElementById("interiorModal");
+
+    interiorCard.addEventListener("click", () => {
+      modal.style.display = "flex";
+    });
+
+    function closeModal() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(e) {
+      if (e.target == modal) modal.style.display = "none";
+    };
+    
+  </script>
+</body>
+</html>
